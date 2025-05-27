@@ -52,15 +52,17 @@ if (-not (Test-Path $SourcePath)) {
 
 # Define the list of files
 $FileList = @(
-    "WINMINE.EXE"
+    "WINMINE.EXE",
+    "WINMINE.HLP",
+    "WINMINE.CHM"
 )
 
 # Use the file list to create a hash table to store the compressed and uncompressed file names.
 $RequiredFiles = @{}
-# Example: Font.dat is Wfont.da_ in the source path.
+# Example: Font.dat is font.da_ in the source path.
 $FileList | ForEach-Object {
-    #Replace the last character with an underscore and add a W to the beginning.
-    $RequiredFiles[$_] = "W" + $_.Substring(0, $_.Length - 1) + "_"
+    #Replace the last character with an underscore.
+    $RequiredFiles[$_] = $_.Substring(0, $_.Length - 1) + "_"
 }
 
 # Check if the required files are present in the source path.
